@@ -1,0 +1,75 @@
+<!doctype>
+<html>
+<head>
+	 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;" />
+	<meta charset="utf-8">
+	<style type="text/css">
+
+	#process-bar {
+			margin: 15px auto 0px;width: 90%;height: 20px;
+		}
+		 #process-bar .music-process-range { 
+		 	width: 70%; height: 20px;  
+		 	border: 1px solid #d6d6d6; border-radius: 5px;
+            -webkit-appearance: none !important;
+			}
+        #process-bar span
+              { width:10%; display: inline-block;
+              	margin: 3px 0 3px 10px;vertical-align: top; }
+       
+		#process-bar .music-process-range::-webkit-slider-thumb { 
+			width: 10px; height: 25px; background: #666; border: 1px solid #cbcbcb; cursor: pointer; 
+		border-radius: 4px; -webkit-box-shadow: 0 0 2px #eee;-webkit-appearance: none !important }
+
+	</style>
+	<script type="text/javascript">
+	    var link = "http://pengjuxiang.fe.baidu.com/music/%e4%b8%80%e4%b8%aa%e5%8f%88%e4%b8%80%e4%b8%aa.mp3";
+         function G(id){
+	    	return document.getElementById(id);
+	    }
+	    function log(str){
+	    	if(window.console){
+	    		console.log(str);
+	    	}
+	    }
+	    function onload(){
+	    	var media = document.getElementById('media');
+	    	media.src=link;
+	    	media.volume = 0;
+	    	media.play();
+           // media.muted=true;
+	    	initEvent();
+	    	G('volume_label').innerHTML = "volume: "+ media.volume;
+	    }
+	   
+	    function initEvent(){
+	    
+	    	G('volum_slider').addEventListener('change',function(){
+	    		var slider = G('volum_slider');
+	    		log('initEvent: change is fire. value: ' + slider.value) ;
+
+	    		media.volume = slider.value/100 ;
+
+                G('volume_label').innerHTML = "slider value:" + slider.value +"<br/>volume: "+ media.volume;
+
+                log('initEvent: change is fire. value: ' + media.volume) ;
+	    	}) ;
+	    	G('volum_slider').value=0;
+
+	    }
+	</script>
+</head>muted
+<body onload="onload();">
+	<audio id="media" autoplay controls >
+		Your Browser is not support Audio!
+	</audio>
+
+	<div id="process-bar">
+		<input type="range" id="volum_slider" class="music-process-range"/>
+	</div>
+	<br/>
+	<article id="volume_label">
+		
+	</article>
+</body>
+</html>

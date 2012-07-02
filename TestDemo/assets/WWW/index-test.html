@@ -1,0 +1,204 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MyPhoto   </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes"/>
+        <style type="text/css" media="screen">@import "css/base.css";</style>
+        <style type="text/css" media="screen">@import "jqtouch/jqtouch.css";</style>
+        <style type="text/css" media="screen">@import "themes/apple/theme.css";</style>
+<!--   <script type="text/javascript" src="http://172.22.233.23:8080/target/target-script-min.js#anonymous"> </script>   
+ -->
+<script type="text/javascript" src="cordova-1.8.0.js"> </script>
+    <script type="text/javascript" src="lib/VolumeSlider.js"> </script>
+	<script src="lib/jquery-1.4.4.min.js" type="application/x-javascript" charset="utf-8"></script>
+        <script src="jqtouch/jqtouch.js" type="application/x-javascript" charset="utf-8"></script>
+        
+		<script type="text/javascript" src="js/play.audio.js"> </script>
+	  <script type="text/javascript" src="js/play.control.js"> </script>
+		 <script type="text/javascript" src="js/view.js"> </script>
+		
+		  <script type="text/javascript" src="js/util.js"></script>
+	<script type="text/javascript" src="js/data.js"> </script>
+	
+<style type="text/css" media="screen">
+    
+    ul{
+      margin:0;
+      padding:0;
+    }
+    ul li{
+	    list-style:none;
+	    
+	}
+	a { color:white; }
+	#songlist{ height: 100%; }
+	#songlist div{ display:inline-block; }
+	
+	#songlist .album_i{
+	    width:100px;
+	}
+	#songlist .album_i img{ width:50px;height:50px; }
+	#songlist .info_s{ 
+	   width:30%;
+	}
+	#songlist .info_s .song{
+	    display:block;
+		
+	}
+	#songlist  .singer{	   
+	   width:30%;
+	}
+	/* jqt */
+	#jqt ul li a, #jqt li.img a + a {
+	   background:#eee;
+	}
+	/* jqt  end */
+	
+	 /* play page*/
+	 #mbox .content{ 	   
+		height: 40%;		
+		border-radius: 8px 8px;
+		background: #EEE;
+		margin: 15px 10px 17px;
+	 }
+	 #mbox .content span{ 
+	        display:block;
+			text-align: center;
+			height: 100%;
+			padding-top: 10%;
+			
+	 }
+	 
+	    #mbox{ height:100%; }
+		
+	    #mbox .icon { float:left;width:37px;height:36px;margin-left:20px;background:url("images/playicon.png") 0 0 no-repeat;cursor:pointer; }
+		 #mbox #play_icons { margin:auto;padding-top:20px;width:300px; }
+		#mbox .play{ margin:10px 10px 0px 10px; border-radius: 8px;height: 15%;padding: 20px 20px;}
+		#mbox .play .previewbar{margin-left:30px;background-position:0px -120px;}
+		#mbox .play .pausebar{ background-position:0px -40px;  }
+		#mbox .play .playbar{ background-position:0px -0px; }  
+		#mbox .play .nextbar{ background-position:0px -160px; }
+ 
+         /* 
+		 #process-bar{ position:relative;height:40px; }  
+        #music-process{ margin:auto;width:30%;height:20px;border:2px solid #DEDFDE;background-color:white;position:relative; }
+		#music-process-bar{ width:80%;height:20px;background-color:#798EA9;}
+		#music-process-bar a{position:absolute;top:-8px;left:80%;cursor:pointer;display:inline-block;width:10px;height:36px;overflow:hidden;
+		background:#666;}
+		#music-process-bar .process{ border-width: 0px;border-style: solid;-moz-border-radius: 11px;-khtml-border-radius: 11px;-webkit-border-radius: 11px;border-radius: 11px; }
+		*/
+		#process-bar {
+			margin: 15px auto 0px;width: 90%;height: 20px;
+		}
+		 #process-bar .music-process-range { width: 70%; height: 20px;  border: 1px solid #d6d6d6; border-radius: 5px;
+            -webkit-appearance: none !important;
+			background-image: url(images/bg-bar-1.png);
+background-postion: 0 0;
+background-size: 0%;
+background-origin: content-box;
+background-repeat: repeat-y;		}
+        #process-bar span
+              { width:10%; display: inline-block;margin: 3px 0 3px 10px;vertical-align: top; }
+        #process-bar #music-process_post{ margin: 3px 10px 3px 0px;text-align: right; }
+		#process-bar .music-process-range::-webkit-slider-thumb { width: 10px; height: 25px; background: #666; border: 1px solid #cbcbcb; cursor: pointer; 
+		border-radius: 4px; -webkit-box-shadow: 0 0 2px #eee;-webkit-appearance: none !important }
+		 
+        </style>
+    <!--     <script type="text/javascript" src="http://www.google.com/jsapi"></script>
+        <script type="text/javascript">google.load("jquery", "1"); </script>    -->
+
+<!-- 
+<script type="text/javascript" src="js/writefile.js"> </script>
+ -->
+
+<script type="text/javascript">
+  var currSong=(function(){
+       var playItem={	      
+		   currentSongId:"" 
+      };
+    return {
+       setCurrentSongId:function(id){
+           playItem.currentSongId=id;
+		   return id;
+       },
+        getCurrentSongId:function(){
+           return playItem.currentSongId;
+        }
+    };
+  })();  
+   var jqtouch = $.jQTouch({
+                icon: 'mail.png',
+                preloadImages: [
+                    'themes/jqt/img/chevron.png',
+                    'themes/jqt/img/back_button.png',
+                    'themes/jqt/img/back_button_clicked.png',
+                    'themes/jqt/img/button_clicked.png',
+                    'themes/jqt/img/grayButton.png',
+                    'themes/jqt/img/whiteButton.png'
+                ]
+            });
+      
+   function  onDeviceReady(){
+       //  navigator.notification.alert('Cordova is working');
+         volumeSlider = window.plugins.volumeSlider;
+         volumeSlider.createVolumeSlider(10,370,2500,30); // origin x, origin y, width, height
+         volumeSlider.hideVolumeSlider();
+         listView.init();
+         return ;
+    }
+  var listView = new View('songlist',songInfo,currSong);
+    
+  function load(){
+          
+    //  alert('ok')
+	 document.addEventListener("deviceready", onDeviceReady, false);
+  }	
+  function log(str){
+  	if(window.console){
+  		console.log(str);
+  	}
+  }
+</script>
+
+
+</head>
+
+<body onload="load();">
+	<div id="jqt">
+		   <div id="list" class="edgetoedge">
+			 <div class="toolbar">               
+				<h1> 歌曲列表</h1>	
+			 </div>
+			<ul id="songlist">
+				
+			</ul>
+			
+		   </div>
+	
+	
+		<div id="mbox" class="notransform">
+			<div class="toolbar"><a href="#" class="back" id="m_tb_back">Back</a>
+			     <h1>SongName</h1></div>
+                    <div id="volume-slider">  </div>
+				    <div id="process-bar"></div>
+					<div class="content">	<span>歌词</span>  </div>
+					
+					<div class="play"  id="play_icons"> 
+						 <a class="icon previewbar" onclick="listView.playControl.skipItem(0);"></a>
+						 <a class="icon pausebar playbar" onclick="listView.playControl.rePlay();" id="play_icon"></a>
+						 <a class="icon nextbar" onclick="listView.playControl.skipItem(1);"></a>
+					</div>
+					
+				
+			
+		</div>
+	</div>
+
+	
+
+
+
+</body>
+</html>

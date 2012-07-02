@@ -1,0 +1,102 @@
+	body,div,img,table,tr,tbody,tfoot,td,ul,li,p,h1,h2,h3,h4,h5,dl,dt,dd{margin:0;padding:0;border:0;}input[type="checkbox"]{ margin:0; padding:0;}table{border-collapse:collapse;border-spacing:0;}th{ font-weight:normal;}h1,h2,h3,h4,h5{ font-size:100%;}i,em{ font-style:normal;}sup{vertical-align:middle;}li{ list-style-type:none;}
+
+ .clearfix:after {	content: ".";display: block;height: 0;clear: both;visibility: hidden;}.clearfix {	display: inline-block;}* html .clearfix {height: 1%;}.clearfix {display: block;}.hide{ display:none;}.show{ display:block;}a{ color:#0043bd;}a:hover{ color:#ff6600;}.red{ color:#ca0101;}.bold{ font-weight:bold;}.green{ color:#339900;}.orange{ color:#ff6600;}.f16{ font-size:16px;}.f14{ font-size:14px;}.more{font-family:\5b8b\4f53;}
+ 
+ body{ font-size:14px; font-family:arial, \5b8b\4f53;color: #E5CEB0;text-align: center;}
+a:hover, a{
+  color: #E5CEB0;
+  text-decoration: none;
+}
+#header{
+   background: black;
+   height: 3em;
+   line-height: 3em;
+   
+}
+#backButton{
+   float: left;
+   padding-left: 2em;
+}
+
+.nav-item{
+    display: none;
+    display: block;
+    height: 3em;
+    line-height: 3em;
+    background: #545d61;
+    width: 100%;
+    border-bottom: 1px solid #E5CEB0;
+}
+.main{
+   display: none; 
+   padding: 2em;
+   background: #545d61;
+   
+}
+
+ #media_play{ height:100%; }
+		
+	    #media_play .icon { float:left;width:37px;height:36px;margin-left:20px;background:url("../images/playicon.png") 0 0 no-repeat;cursor:pointer; }
+		 #media_play #play_icons { margin:auto;padding-top:20px;width:15em; }
+		#media_play .play{ margin:10px 10px 0px 10px; border-radius: 8px;height: 15%;padding: 20px 20px;}
+		#media_play .play .previewbar{margin-left:30px;background-position:0px -120px;}
+		#media_play .play .pausebar{ background-position:0px -40px;  }
+		#media_play .play .playbar{ background-position:0px -0px; }  
+		#media_play .play .nextbar{ background-position:0px -160px; }
+        
+#music_download{
+    text-align: left;
+}        
+#download_src{
+         text-align: left;
+         display: block;
+         margin-bottom: 2em;  
+        }
+#music_download input[type=range]{
+           text-align: left;
+           display: block;
+         }
+#targetDir{
+           margin-top: 2em;
+           display:block;
+           height: 2em ;
+        }
+#music_download dt{
+    font-size: 2em ;
+}
+#music_download ul{
+    margin: 1em;
+}
+#music_download .song-name{
+    width: 50%;
+    display: inline-block;
+    text-align: left;
+}
+#music_download .icon{
+   width: 20%;
+   text-align: right;
+}
+#download_status{
+   margin: 1em auto;
+}        
+
+#volume_control_audio{
+    text-align: left; 
+}         
+#process-bar {
+			margin: 15px auto 0px;width: 90%;height: 20px;
+		}
+		 #process-bar .music-process-range { 
+		 	width: 70%; height: 20px;  
+		 	border: 1px solid #d6d6d6; border-radius: 5px;
+            -webkit-appearance: none !important;
+			}
+        #process-bar span
+              { width:10%; display: inline-block;
+              	margin: 3px 0 3px 10px;vertical-align: top; }
+       
+		#process-bar .music-process-range::-webkit-slider-thumb { 
+			width: 10px; height: 25px; background: #666; border: 1px solid #cbcbcb; cursor: pointer; 
+		border-radius: 4px; -webkit-box-shadow: 0 0 2px #eee;-webkit-appearance: none !important }
+
+ 

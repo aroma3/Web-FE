@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<!--
+#
+# Licensed to the Apache Software Foundation (ASF) under one
+# or more contributor license agreements.  See the NOTICE file
+# distributed with this work for additional information
+# regarding copyright ownership.  The ASF licenses this file
+# to you under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+# 
+# http://www.apache.org/licenses/LICENSE-2.0
+# 
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+#  KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License.
+#
+-->
+  <head>
+  <title></title>
+  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0;" />
+	<meta charset="utf-8">
+
+
+	<!-- iPad/iPhone specific css below, add after your main css >
+	<link rel="stylesheet" media="only screen and (max-device-width: 1024px)" href="ipad.css" type="text/css" />		
+	<link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="iphone.css" type="text/css" />		
+	-->
+	<!-- If your application is targeting iOS BEFORE 4.0 you MUST put json2.js from http://www.JSON.org/json2.js into your www directory and include it here -->
+	<script type="text/javascript" charset="utf-8" src="cordova-1.8.0.js"></script>
+        <script type="text/javascript" charset="utf-8" src="lib/VolumeSlider.js"></script>
+        <script type="text/javascript" charset="utf-8" src="lib/jq.mobi.js"></script>
+            <script type="text/javascript" charset="utf-8" src="lib/jq.ui.js"></script>
+    <link rel="stylesheet"  href="css/demo_main.css" type="text/css" />
+       
+        <script type="text/javascript" src="js/data.js"> </script>
+        
+
+        <script type="text/javascript" src="js/play.audio.js"> </script>
+        <script type="text/javascript" src="js/play.control.js"> </script>
+       
+        
+        <script type="text/javascript" charset="utf-8" src="js/demo_main.js"></script>
+
+        
+              
+  </head>
+  <body onload="onBodyLoad()">
+	 
+        
+        <div id="nav_list" class="nav-list">
+            <a href="#media_play" class="nav-item" id="nav_media_play">Play Music By Media</a>
+            <a href="#audio_play" class="nav-item" id="nav_audio_play">Play Music By Audio</a>
+            <a href="#music_download" class="nav-item" id="nav_music_download">Download Music File </a>
+            <a href="#volume_control_media" class="nav-item" id="nav_volume_control_media">Volume Control By Media</a>
+            <a href="#volume_control_audio" class="nav-item" id="nav_volume_control_audio">Volume Control By Audio</a>
+            <a href="#play_downloaded_file" class="nav-item" id="nav_play_downloaded_file">Play Download File</a>
+            <a href="#play_ipod_file" class="nav-item" id="nav_play_ipod_file">Play Ipod File</a>
+         </div>
+        
+        <div id="media_play" class="main">
+             <h1> Play Music By Media</h1>
+            
+            <div class="play"  id="play_icons"> 
+                <a class="icon previewbar" onclick="playControl.skipItem(0);"></a>
+                <a class="icon pausebar playbar" onclick="playControl.rePlay();" id="play_icon"></a>
+                <a class="icon nextbar" onclick="playControl.skipItem(1);"></a>
+            </div>
+            
+             
+        </div>
+        
+        <div id="audio_play" class="main">
+                
+                <audio id="audio" src="" controls='controls'> </audio>
+        </div>
+        
+        <div id="music_download" class="main">
+            <dt> Song File List </dt>
+            <ul id="src-list"> 
+                <li><span class="song-name">豆浆油条 - JJ</span><a id="link_1" class="download-song icon" 
+                    href="#" id="link_0" onclick="return false;">Download</a></li>
+                <li><span class="song-name">曙光 - JJ</span><a class="download-song icon" 
+                    href= "#" id="link_2" onclick="return false;">Download</a></li>
+                <li><span class="song-name">表达爱 - JJ</span><a class="download-song icon" 
+                    href="#" id="link_3" onclick="return false;">Download</a></li>
+            </ul>
+           
+            <dt> Loca File List </dt>        
+            <ul id="downloaded-list">
+                <li> <span class="song-name">First</span> <a class="play-song icon" herf='#'>Play</a> | <a class="del-song icon" href="#">Delete</a></li>
+            </ul>
+            <p id="download_status" style="display: none;">  downloading...... </p>
+            <audio src="" id="download_audio" autoplay controls >  </audio>
+            
+       </div>
+        
+        <div id="volume_control_media" class="main">
+        </div>
+        
+        <div id="volume_control_audio" class="main">
+            <audio id="media" autoplay controls >
+                Your Browser is not support Audio!
+            </audio>
+            
+            <div id="process-bar">
+                <input type="range" id="volum_slider" class="music-process-range"/>
+            </div>
+            
+            <br/>
+            
+            <input type="range" id="volum_slider" class="music-process-range"/>
+            
+            <br/>
+            <article id="volume_label">
+                
+            </article>
+            <mark>
+                Audio Tag Volume is ReadOnly in Iphone device! 
+            </mark>
+        </div>
+        
+        <div id="play_downloaded_file" class="main">
+        </div>
+        
+        <div id="play_ipod_file"  class="main">
+            <div style="margin-top: 3em;height: 5em;display:block;">
+                <input type="button"  id="itune_down" value="itune音乐文件" onclick="getItuneFile();"  />
+            </div>
+            
+            <div id="metaData" style="border: 1px solid #eee;padding: 8px;margin-top:10px;"></div>
+
+        </div>
+    
+  
+          </body>
+</html>

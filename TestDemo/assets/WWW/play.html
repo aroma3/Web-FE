@@ -1,0 +1,65 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>MyPhoto</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=yes"/>
+
+<script type="text/javascript" src="cordova-1.7.0.js"> </script>
+<script type="text/javascript" src="js/play.js"> </script>
+<script  type="text/javascript" src="js/tangram.js"> </script>
+
+<script type="text/javascript">
+  
+     function play_load()
+     {
+         document.addEventListener("deviceready", onDeviceReady, false);        
+     }
+     function onDeviceReady(){
+          var linkstr = document.location.search,linkstr=linkstr.substr(linkstr.indexOf("link=")+5,linkstr.length);
+           playAudio(linkstr);  
+          //  setTimeout("pauseAudio()",4000);
+     }
+     function play(){
+        
+         if(T.dom.hasClass(T.dom.query(".pausebar")[0],"playbar"))
+         {
+      
+              startAudio();
+             T.dom.removeClass( T.dom.query(".pausebar")[0],"playbar");
+         }else
+         {
+        
+              pauseAudio();
+              T.dom.addClass(T.dom.query(".pausebar")[0],"playbar");
+         }
+           
+         
+     }
+</script>
+
+<style type="text/css">
+
+.icon {float:left;width:37px;height:36px;margin-left:20px;background:url("images/playicon.png") 0 0 no-repeat;}
+.play{ margin-left:20px; }
+ .play .previewbar{margin-left:30px;background-position:0px -120px;}
+ .play  .pausebar{ background-position:0px -40px;  }
+ .play .playbar{ background-position:0px -0px; }  
+ .play .nextbar{ background-position:0px -160px; }
+
+   
+</style>
+</head>
+
+<body onload="play_load();">
+	<h1><a onclick="window.open('index.html');stopAudio();">Back to Play List</a></h1>
+	<div class="play"> 
+	     <a class="icon previewbar" onclick="preItem();"></a>
+	     <a class="icon pausebar" onclick="play();"></a>
+	     <a class="icon nextbar" onclick="nextItem();"></a>
+	</div>
+	
+	
+</body>
+</html>

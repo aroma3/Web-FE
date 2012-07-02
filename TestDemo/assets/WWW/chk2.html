@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html >
+  <head>
+     <title>Contacts HomeKeeper</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+ <!--     
+    <link rel="stylesheet" href="css/jq.ui.css">
+ -->
+    <script type="text/javascript" charset="utf-8" src="scripts/lib/cordova-1.8.0.js"></script>
+     <script type="text/javascript" charset="utf-8" src="scripts/lib/jq.mobi.js"></script>
+    <script type="text/javascript" charset="utf-8" src="scripts/lib/jq.ui.js"></script>
+    <script type="text/javascript" charset="utf-8" src="scripts/lib/iscroll.js"></script>
+  <!--  <script type="text/javascript" src="http://172.22.230.127:8080/target/target-script-min.js#anonymous"></script>
+-->
+
+    
+    <style type="text/css">
+      body,div,img,table,tr,tbody,tfoot,td,ul,li,p,h1,h2,h3,h4,h5,dl,dt,dd{margin:0;padding:0;border:0;}
+        input[type="checkbox"]{ margin:0; padding:0;}table{border-collapse:collapse;border-spacing:0;}th{ font-weight:normal;}h1,h2,h3,h4,h5{ font-size:100%;}i,em{ font-style:normal;}sup{vertical-align:middle;}li{ list-style-type:none;}body{ font-size:14px; font-family:arial, \5b8b\4f53;background:#ffffff;}
+
+    .clearfix:after {	content: ".";display: block;height: 0;clear: both;visibility: hidden;}.clearfix {	display: inline-block;}* html .clearfix {height: 1%;}.clearfix {display: block;}
+ 
+       body{
+	        background: #A0D5D6;
+			color: #DCEBDD;
+			text-align:center;
+	   }
+    
+/**     jq            **/
+.jqPopup {
+display: block;
+width: 300px;
+border: solid 1px 
+#72767B;
+-webkit-box-shadow: 0px 4px 6px 
+#555, 0 0 20px 
+rgba(255, 255, 255, 0.5);
+-webkit-border-radius: 10px;
+padding: 10px;
+opacity: 1;
+-webkit-transform: scale(1);
+-webkit-transition: all 0.20s ease-in-out;
+position: absolute;
+z-index: 1000000;
+margin-left: auto!important;
+margin-right: auto!important;
+background-image: -webkit-gradient(linear, left top, left bottom, from(
+rgba(70, 70, 70, 0.8)), to(
+rgba(0, 20, 20, 0.8)));
+}
+#jQUi footer, #jQUi header, #jQUi nav {
+display: none;
+}
+.jqPopup > footer {
+width: 100%;
+text-align: center;
+display: block !important;
+}
+.jqPopup > * {
+color: 
+white;
+}
+.jqPopup > div {
+font-size: 12px;
+margin: 8px;
+}
+
+.jqPopup > footer > a#cancel {
+float: left;
+}
+.jqPopup > footer > a#action {
+float: right;
+margin-right: 4px;
+}
+.button {
+z-index: 1;
+color: 
+#333;
+cursor: pointer;
+display: inline-block;
+font-weight: bold;
+font-size: 14px;
+line-height: 36px;
+position: relative;
+text-decoration: none;
+text-align: center;
+text-shadow: 
+white 0 1px 0;
+height: 36px;
+min-width: 40px;
+padding: 0px 8px;
+margin-top: 6px;
+margin-left: 6px;
+text-overflow: ellipsis;
+-webkit-border-radius: 6px;
+border-radius: 6px;
+background-image: -webkit-gradient(linear, left top, left bottom, from(
+white), to(
+#999), color-stop(.5,
+white), color-stop(.5,
+#CCC));
+background-image: linear-gradient(left top, left bottom, from(
+white), to(
+#999), color-stop(.5,
+white), color-stop(.5,
+#CCC));
+}
+    /** jq end**/
+        .main{
+          backgroud: #A0D5D6;
+          height:100%;
+		 
+        }
+        .nav-item{
+           background: #789AA1;
+           border-top: 1px solid #304345;
+           width: 100%;
+           height: 3em;
+		   line-height:3em; 
+		   curser:pointer;
+        }
+		.nav-item a {
+		   display:block;
+		   width:100%;
+		   color: #DCEBDD;
+		   text-decoration: none;
+		}
+		.nav-item a:hover{
+		    color: #DCEBDD;
+		}
+    
+		.panel-item{
+		   display:none;
+		   width: 100%;
+		   height: 100%;
+		  
+		}
+    .panel-item .main{
+      width: 80%;
+      margin: 3em auto 0;
+    }
+    .panel-item .main label{
+      width: 6.5em;
+      text-align: left;
+      display: inline-block;
+    }
+    .panel-item .main input[type=text]{
+      border: none;
+    }
+    .panel-item .main input[type=button]{
+      display: inline-block;
+      margin-top: 5em;
+      width: 5em;
+      height: 3em;
+      border: 1px solid #90D1D1;
+      background:#FFAD78;
+      box-shadow: 0px 0px 5px 0px rgba(200, 200, 198, 0.59);
+       border-radius: 1em;
+    }
+    
+     #header{
+           font-size: 1em;
+           height: 3em;
+           background: #304345;          
+           positon:relative; 
+        }
+        #pageTitle{
+          line-height: 3em;
+        }
+       
+    #header .button{
+      display: inline-block;
+      position: absolute;
+      background: white;
+      border-radius: 6px;
+      top: 0.2em;
+      left: 1em;
+      width: 3em;
+      height: 2em;
+      line-height: 2em;
+      text-decoration: none;
+    }
+    #backup{
+      width: 12em;
+    }
+   #filePath{
+      margin-top: 3em;
+      font-size: 2em ;
+   }
+   .main .searchField{
+     margin-top: 3em;
+     height: 2.5em;
+     border-radius: 0.5em;
+   }
+   .main .list{
+      border: 1px solid #F2EDA0;
+      width: 70%;
+      margin: 3em auto;
+      min-height: 3em;
+      text-align: left;
+      height: 40em;
+      overflow: hidden;
+   }
+
+    </style>
+  </head>
+  <body>
+       <div class="header" id="header"></div>
+       <div id="nav" class="main">      
+          <div id="nav_1" class="nav-item"><a href="#1"> Add Note</a> </div>          
+          <div id="nav_2" class="nav-item"><a  href="#2"> Backup Note</a> </div>
+          <div id="nav_3" class="nav-item"><a href="#3"> Find Note</a> </div>
+      </div>
+	  
+	  <div id="1" class="panel-item"> 
+	  	<!-- 
+	  	   TODO: add layout
+	    -->
+         <div class="main">
+             <ul>
+               <li>
+                 <label>Name:</label>
+                 <input type="text" class="name"/>
+               </li>
+               <li>
+                 <label>PhoneNumber:</label>
+                 <input type="text" class="phoneno"/>
+               </li>
+               <li>
+               
+                   <input  type="button" value="Add" id="addContacts">                  
+                  
+                 
+               </li>
+             </ul>
+    	       
+    	       
+         </div>
+	  </div>
+	  <div id="2" class="panel-item"> 
+	  		<!-- 
+	  	   TODO: add layout
+	    -->
+            <div class="main">
+                  <p class="title">Backup Your Contacts To Local</p>
+                  <input type="button" id="backup" value="Backup Your Contacts">
+                  <div id="filePath">
+                     
+                  </div>
+            </div>
+          
+	   </div>
+	  <div id="3" class="panel-item">
+	  		<!-- 
+	  	   TODO: add layout
+	    -->
+            <div class="main">
+
+                 <input type="text" value = 'Please Input The Name' class="searchField" />
+                 <input type="button" value ="Find" class="findBtn"/>
+                 <div id="wrapper">
+                   <div id="scroller">
+                   
+                        <ul>
+                          <li>news 2</li>
+                          <li>news 2</li>
+                          <li>news 2</li>
+                          <li>news 2</li>
+                          <li>news 2</li>
+                           <li>news 2</li>
+                            <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news 2</li>
+                               <li>news 2</li>
+                            <li>news end</li>
+                        </ul>
+
+                   
+                   </div>
+                 </div>
+           </div>
+	   </div>
+    
+
+  </body>
+  <script type="text/javascript">
+    var log= function(str){
+      if(window.console){
+        window.console.log(str);
+      }
+    }
+    var onSuccess = function(){       
+       $.ui.popup({
+            title:"Alert!",
+            message:"The Operation is success!",
+       });
+    }
+    var onFailure = function(){
+         $.ui.popup({
+            title:"Alert!",
+            message:"The Operation is failure!",
+       });
+    }
+
+    var contacts = function() {
+
+ 		return {
+ 			hasInitBack: false,
+      /**
+       * add Back click handler
+       * @return {[boolean]}  when backButton is exist return true ,or false;
+       */
+ 			initBack: function() {
+ 				var that = this;
+ 				$('#backButton').bind('click', function() {
+   					var temp = null;
+   					temp = that.curDiv;
+   					that.curDiv = that.oldDiv;
+   					that.oldDiv = temp;
+            this.href="#nav";
+ 					$.ui.availableTransitions.slide(that.oldDiv, that.curDiv, true);
+ 				   $.ui.setTitle('Contacts HomeKeeper');
+           $('#backButton').hide();
+        //   $.ui.updateHeaderElement($('#header'));
+ 				});
+ 				if ($('#backButton').length > 0) {
+ 					return true;
+ 				} else {
+ 					return false;
+ 				}
+ 			},
+      /**
+       * init nav-item click handler; when click slide page ; init back ;and modify title;
+       * @return {[type]} [description]
+       */
+ 			init: function() {
+ 				this.curDiv = $('#nav')[0];
+ 				this.oldDiv = null;
+
+        this.initEvent();
+        
+ 			},
+      initEvent: function(){
+         $('.nav-item').bind('click', this.initNavslibing());
+
+         $('#addContacts').bind('click',this.addNote);
+         $('#backup').bind('click',this.backupContacts());
+         $('.searchField').bind('focus',function(){
+             if(this.value == 'Please Input The Name'){
+                 this.value = '';
+             }
+         });
+         $('.findBtn').bind('click',this.findContacts()) ;
+      },
+ 	    initNavslibing: function(){
+          var that = this;
+          return function(e){
+               var target = e.currentTarget,
+                  newId = target.id.replace('nav_', '');
+
+                that.oldDiv = that.curDiv;
+
+                that.curDiv = $('#' + newId)[0];
+
+
+
+                $.ui.availableTransitions.slide(that.oldDiv, that.curDiv, false);
+                $.ui.setTitle('Contacts HomeKeeper');
+                $('#backButton').attr('href','#nav');
+                 $('#backButton').show();
+              //  $('#header').show();
+                if (!that.hasInitBack) {
+                  that.hasInitBack = that.initBack();
+                }
+          }
+      },
+      addNote: function(){        
+         var data = {};
+         if($('.name').val()==''){
+             $.ui.popup({  
+                   title:'alert',
+                  message:'please input name'
+                });
+             return ;
+         }
+
+         data.displayName = $('.name').val();
+         data.phoneNumbers = $('.phoneno').val();
+         var myContact = navigator.contacts.create(data);
+          myContact.note = "This contact has a note.";
+          myContact.save(onSuccess,onFailure);
+      },
+      initFileEntry: function(){
+           var that = this;
+           var onFileSystemSuccess = function(fileSystem){
+              that.fileSystem = fileSystem;
+           }
+            var fsFail = function(){
+              $.ui.popup('get file System fail!');
+            }
+          window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, onFileSystemSuccess, fsFail);
+          
+      },
+      getContactsData: function(success,name){
+         log('in getContactsData');
+         var options = new ContactFindOptions();
+         if(name){
+           options.filter=name;
+         }else{
+           options.filter=='';
+         }
+       
+        options.multiple = true;
+        var filter =['*'];
+        navigator.contacts.find(filter, success, onFailure, options);
+     
+      },
+      backupContacts: function(){
+         var that = this;
+         return function(){
+
+            //$.ui.popup('back up is fire');
+            
+           var success = function(contacts){
+               var str = '';
+               for(var i = 0; i < contacts.length ;i++){             
+                  for(var key in contacts[i]){
+                       str +=  key  + ':' + contacts[i][key] + '&&'; 
+                  }
+               }
+
+             
+              var writeFile = function(writer) {
+                   writer.write(str);
+             }
+
+              var gotFileEntry = function(entry){
+                  entry.createWriter(writeFile,onFailure) ;  
+                  $.ui.popup(entry.toURI());
+                  $('#filePath').html(entry.toURI());       
+              }
+
+              that.fileSystem.root.getFile("contacts.txt",
+                         {create: true}, gotFileEntry, onFailure);
+
+              
+           }
+           that.initFileEntry();
+
+           that.getContactsData(success);
+         
+
+        }
+       
+         
+      },
+      findContacts: function(){
+          var that = this;
+          return function(){
+            var success = function(contacts){
+                /*  log('in success:   ' + $(contacts).size());
+                  var str = "<ul>";                 
+                   for(var i = 0; i < contacts.length ;i++){             
+                      for(var key in contacts[i]){
+                           str += '<li>' + key  + ':' + contacts[i][key] + '</li>'; 
+                      }
+                   }
+                   str += ' </ul>'
+                  $('.list').html(str);
+                  log(str);
+                   */
+                  
+            }
+            var name = $('searchField').val();
+            that.getContactsData(success,name);
+
+          }
+      }
+
+ 		}
+
+ 	}();
+
+ $(function() {
+   	$.ui.setTitle('Contacts HomeKeeper');
+    //$.ui.updateHeaderElement($('#header'));
+   	
+   	contacts.init();
+
+ })
+ myScroll = new iScroll('wrapper',{hScroll:false,hScrollbar:true});
+ $('#wrapper').bind('drag',function(event){
+     log('wrapper drag is on~~~~');
+     var curTop = this.offsetTop + 10 ;
+     myScroll.scrollTo(10,curTop,false);
+ })
+ $('#wrapper').bind('click',function(event){
+     log('wrapper click is on~~~~');
+     var curTop = this.offsetTop + 10 ;
+     myScroll.scrollTo(10,curTop,false);
+ })
+ 
+ $('#wrapper').bind('scroll',function(event){
+     log('wrapper scroll is on~~~~');
+     var curTop = this.offsetTop + 10 ;
+     myScroll.scrollTo(10,curTop,false);
+ })
+  </script>
+</html>
