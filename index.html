@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+   table td{ border-bottom:#eee 1px solid; }
+
+</style>
+<script type="text/javascript">
+//再看看继承
+void function(){
+/*
+  FunXm 继承自 FunTest，所以jx应该包括FunTest的prototype方法的。
+*/
+var FunTest=function(){
+   this.a="funtest";
+}
+FunTest.prototype.getA=function(){ return this.a; }
+
+var FunXm = function(){ 
+	this.b="funxm";
+	this.from="huoxin"; 
+}
+FunXm.prototype=new FunTest();
+
+var jx=new FunXm();
+
+for(var key in jx){
+   if(window.console){
+      console.log('key: '+key+'  value:  '+jx[key]);
+	  if(jx.hasOwnProperty(key)){
+	     console.log('own property '+key);
+	  }
+   }
+}
+
+var toString=Object.prototype.toString;
+
+  var a =['a','b','c'];
+  var b=new Array(['a','bb','cc']);
+  
+  var _pad = function(num, length){
+        num = num.toString().split(".")[0];// aroma; 字符串也有length属性	;function arguments array string 都有length属性
+        if(length - num.length > -1){
+            return Array(length - num.length + 1).join("0") + num;
+        }else{
+            return num;
+        }
+    },
+ ArgTest=function(a, b){
+   var i, s = "The ArgTest function expected ";
+   var numargs = arguments.length;
+   var expargs = ArgTest.length;
+   if (expargs < 2)
+      s += expargs + " argument. ";
+   else
+      s += expargs + " arguments. ";
+   if (numargs < 2)
+      s += numargs + " was passed.";
+   else
+      s += numargs + " were passed.";
+   return(s);
+},
+ArgIsArray=function(a, b){
+   var arg = toString.call(arguments);
+   return arg;
+},
+EnumObj=function(obj){
+     var result=[];
+    if(toString.call(obj)=="[object Object]")
+	{
+	    for(var key in obj)
+		{
+		    result.push([key,obj[key]]);
+		}
+	}
+	return result.join('\r\n');
+};
+//alert(EnumObj(jx));
+function log(str){
+   if(window.console){
+      console.log(str);
+   }
+}
+window.log=log;
+}(window)
+
+var n=0;
+   function go(url){
+       log(frames('frame1'));
+     
+	   n==0?new function(){frames("frame1").location=url,n=1}:null;
+	   alert(frames("frame1").location.toString());
+	   document.all("frame1").readyState!="complete"?setTimeout(go,10):so();
+	   
+	   function so(){alert('googd');frames("frame1").document.execCommand("SaveAs");alert('last');n=0;};
+   }
+        
+
+	
+/*	var price=305.666;
+//alert(_pad(price,10));
+   var test = ArgTest("lijiang",'taishan',"xizang","xinjiang","changsha");
+   alert(test);
+   */
+ //  alert(ArgIsArray('dron','tui'));
+
+</script>
+</head>
+<body>
+<iframe id="frame1" style="display:none"></iframe>
+   <script language="text/javascript">
+  var n=0;
+   function go(url){
+       log(frames('frame1'));
+     
+	   n==0?new function(){frames("frame1").location=url,n=1}:null;
+	 //  alert(frames("frame1").location.toString());
+	   document.all("frame1").readyState!="complete"?setTimeout(go,10):so();
+	   alert(document.all['img'][0].fileSize)
+	   function so(){frames("frame1").document.execCommand("SaveAs");n=0;};
+   }
+   </script>
+ <!-- <img src="modify-file.jpg" onclick="go(src);" /> -->
+  
+  <table>
+     <tr><td>中国</td><td></td><td>东部</td></tr>
+	 <tr><td>挪威</td><td>欧洲</td><td>北部</td></tr>
+	 <tr><td>印度</td><td>亚洲</td><td>中部</td></tr>
+	 <tr><td>伊朗</td><td>亚洲</td><td>中东部</td></tr>
+  </table>
+</body>
+</html>
